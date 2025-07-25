@@ -1,21 +1,32 @@
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Header } from './Components/Header';
+import { Sidebar } from './Components/SideBar';
+import { HomePage } from './Components/HomePage';
+import { SettingsPage } from './Components/SettingsPage.jsx'; 
 
-function App() {
+const App = () => {
   return (
-    <>
-      <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
-        <h1 className="text-4xl font-bold text-blue-600 mb-4">
-          🚀 Tailwind is Working!
-        </h1>
-        <p className="text-gray-700 text-lg">
-          You can now build your UI with Tailwind CSS.
-        </p>
-        <button className="mt-6 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded shadow">
-          Click Me
-        </button>
-      </div>
-    </>
-  )
-}
+    <Router>
+      <div className="h-screen bg-gray-50 flex">
+        {/* Sidebar Component - 7.5% width */}
+        <Sidebar />
 
-export default App
+        {/* Main content area - 92.5% width */}
+        <div className="w-[92.5%] flex flex-col">
+          <Header />
+          
+          {/* Main content area - remaining height after header */}
+          <main className="flex-1 p-6">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+            </Routes>
+          </main>
+        </div>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
