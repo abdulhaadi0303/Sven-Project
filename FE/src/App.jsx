@@ -22,11 +22,15 @@ const App = () => {
   return (
     <Router>
       <div className="h-screen bg-gray-50 flex">
-        {/* Sidebar - only render above 640px */}
+        {/* Fixed Sidebar - only render above 640px */}
         {showSidebar && (
           <div
             className={`
+              fixed
+              left-0
+              top-0
               h-full
+              z-40
               w-[5%]
               max-[1000px]:w-[6%]
               max-[850px]:w-[7.5%]
@@ -40,11 +44,11 @@ const App = () => {
         <div
           className={`
             flex flex-col
-            ${showSidebar ? 'w-[95%] max-[1000px]:w-[94%] max-[850px]:w-[92.5%]' : 'w-full'}
+            ${showSidebar ? 'ml-[5%] max-[1000px]:ml-[6%] max-[850px]:ml-[7.5%] w-[95%] max-[1000px]:w-[94%] max-[850px]:w-[92.5%]' : 'w-full'}
           `}
         >
           <Header />
-          <main className="flex-1 p-6">
+          <main className="flex-1 overflow-auto">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/settings" element={<SettingsPage />} />
